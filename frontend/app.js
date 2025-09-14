@@ -1,16 +1,35 @@
-function sendMessage() {
-  // 1. Get the user input
-  // 2. Display it in the chat
-  // 3. Call Groq API
-  // 4. Display Groq’s response
-}
+function chatApp() {
+  return {
+    input: "",
+    messages: [],
 
-// helper function to add messages to the chat window
-function addMessage(sender, text) {
-  // will add messages to the DOM
-}
+    async sendMessages() {
+      const userText = this.input.trim();
+      if (userText == "") return;
 
-// placeholder for Groq API (we'll add later)
-async function getAIResponse(userText) {
-  // here we will connect with Groq API
+      this.messages.push({ from: "user", text: userText });
+      this.input = "";
+
+      try {
+        const aiReply = await this.getAIResponse(userText);
+        this.messages.push({ from: "ai", text: aiReply });
+      } catch (err) {
+        this.messages.push({ from: "ai", text: "Error talking to server" });
+        console.error(err);
+      }
+    },
+
+    async getAIResponse(userText) {
+      const res = await fetch("", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+      });
+
+      if (!res.ok) throw new Error("Backend error: " + res.status);
+
+      const data = await res.json();
+      return data.reply || "No reply from server.";
+    }
+  };
 }
