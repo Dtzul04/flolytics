@@ -20,10 +20,10 @@ function chatApp() {
     },
 
     async getAIResponse(userText) {
-      const res = await fetch("", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userText })
+      const res = await fetch("http://localhost:8080/hello", {
+        if (!res.ok) throw new Error("Backend error: " + res.status);
+  const data = await res.text(); // because /hello returns plain text
+  return data;
       });
 
       if (!res.ok) throw new Error("Backend error: " + res.status);
