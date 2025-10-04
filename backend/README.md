@@ -1,5 +1,7 @@
 # Backend (Flolytics)
 
+![CI](https://github.com/Dtzul04/flolytics/actions/workflows/maven-java21.yml/badge.svg?branch=main)
+
 This backend requires Java 21 (LTS).
 
 Recommended local setup (macOS):
