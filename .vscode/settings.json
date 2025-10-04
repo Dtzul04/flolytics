@@ -1,0 +1,8 @@
+{
+    // Ensure the Java language server treats the Maven module's source folder as a source root
+    "java.project.sourcePaths": [
+        "backend/src/main/java"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

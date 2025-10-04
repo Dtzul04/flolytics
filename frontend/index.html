@@ -19,7 +19,7 @@
     </div>
 
     <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3">
-      <template x-for="(msg, index) in messages" :key="msg">
+      <template x-for="(msg, index) in messages" :key="index>
         <div 
             class="px-4 py-2 rounded-lg max-w-xs"
             :class="msg.from === 'user'
@@ -40,7 +40,7 @@
       >
       <button
         class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
-        @click="sendMessage"
+        @click="sendMessages"
       >Send</button>
     </div>
 
