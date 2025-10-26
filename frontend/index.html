@@ -18,16 +18,12 @@
       <h2 class="text-md">Start chatting to fly with numbers!</h2>
     </div>
 
-    <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3">
-      <template x-for="(msg, index) in messages" :key="index>
-        <div 
-            class="px-4 py-2 rounded-lg max-w-xs"
-            :class="msg.from === 'user'
-                ? 'self-end bg-indigo-500 text-white'
-                : 'self-start bg-gray-200 text-gray-800'"
-            x-text="msg.text">
-        </div>
-      </template>
+    <div id="chat-box" class="chat-box">
+    <template x-for="msg in messages" :key="msg.text">
+     <div :class="msg.from === 'user' ? 'user-msg' : 'ai-msg'">
+      <p x-text="msg.text"></p>
+     </div>
+    </template>
     </div>
 
     <div class="p-4 border-t flex items-center space-x-2">
@@ -40,7 +36,7 @@
       >
       <button
         class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
-        @click="sendMessages"
+        @click="sendMessage"
       >Send</button>
     </div>
 
