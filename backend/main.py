@@ -27,7 +27,7 @@ def home():
     return {"message": "Hello from FastAPI backend!"}
 
 @app.post("/api/chat")
-def chat(request: ChatRequest):
+async def chat(request: ChatRequest):
     user_message = request.user_input
     print("User said:", user_message)
 
