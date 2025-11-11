@@ -21,6 +21,7 @@ flolytics/
 ├─ .vscode/ # VSCode settings folder
 ├─ .gitignore # Git ignore file
 ├─ README.md # Project README
+├─ requirements.txt # Python dependencies file
 
 ---
 
