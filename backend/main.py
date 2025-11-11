@@ -17,9 +17,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://flolytics-frontend.onrender.com",
-        "https://flolytics-2025.onrender.com",
-        "http://localhost:8000",
+        "https://flolytics-frontend.onrender.com", 
+        "http://localhost:8000",                  
     ],
     allow_credentials=True,
     allow_methods=["*"],
