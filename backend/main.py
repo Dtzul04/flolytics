@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import requests
+
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -16,14 +20,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://flolytics-frontend.onrender.com", 
-        "http://localhost:8000",                  
-    ],
+    allow_origins=[*],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+async def root():
+    return FileResponse("frontend/index.html")
 
 @app.get("/")
 def home():
