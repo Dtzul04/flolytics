@@ -3,6 +3,10 @@
 Flolytics is an AI-powered financial tool designed to help users manage finances smartly and "fly with numbers." It provides an interactive chat interface where users can ask finance-related questions and receive helpful responses.
 
 ---
+## Live Demo
+
+You can try Flolytics live at: [https://flolytics-2025.onrender.com](https://flolytics-2025.onrender.com)
+
 
 ## Features
 
