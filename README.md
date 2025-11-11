@@ -19,11 +19,10 @@ flolytics/
 ├─ backend/ # FastAPI backend code
 ├─ frontend/ # HTML, JS, CSS files
 ├─ .venv/ # Python virtual environment
-├─ requirements.txt # Python dependencies
-└─ README.md
+├─ .vscode/ # VSCode settings folder
+├─ .gitignore # Git ignore file
+├─ README.md # Project README
 
-yaml
-Copy code
 
 ---
 
@@ -32,47 +31,57 @@ Copy code
 ### Backend
 
 1. Activate your virtual environment:
-```bash
-source .venv/bin/activate
-Install dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Set environment variables in .env:
+    ```bash
+    source .venv/bin/activate
+    ```
 
-env
-Copy code
-GROQ_API_KEY=your_groq_api_key_here
-Run the FastAPI server:
+2. Install dependencies:
 
-bash
-Copy code
-uvicorn main:app --reload
-The backend will be available at http://127.0.0.1:8000.
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Frontend
-Open index.html in a browser.
+3. Set environment variables in `.env`:
+
+    ```
+    GROQ_API_KEY=your_groq_api_key_here
+    ```
+
+4. Run the FastAPI server:
+
+    ```bash
+    uvicorn main:app --reload
+    ```
+
+The backend will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+### Frontend
+
+Open `index.html` in a browser.
 
 The chat interface will connect to your running backend.
 
-Deployment
+---
+
+## Deployment
+
 You can deploy the project using Render:
 
-Push your latest changes to GitHub.
+1. Push your latest changes to GitHub.
+2. Connect your GitHub repository to Render.
+3. Configure build and start commands:
 
-Connect your GitHub repository to Render.
+    - Build Command: `pip install -r requirements.txt`
+    - Start Command: `uvicorn backend.main:app --host 0.0.0.0 --port 10000`
 
-Configure build and start commands:
+4. Add environment variable `GROQ_API_KEY` in Render settings.
 
-Build Command: pip install -r requirements.txt
+---
 
-Start Command: uvicorn backend.main:app --host 0.0.0.0 --port 10000
+## Notes
 
-Add environment variable GROQ_API_KEY in Render settings.
-
-Notes
-Make sure to use a valid Groq API key.
-
-The AI chat is preloaded with a welcome message:
-"My name is Flolytics, an AI Financial Tool to help you handle finances smartly and fly with numbers. How can I help you today?"
+- Make sure to use a valid Groq API key.
+- The AI chat is preloaded with a welcome message:
+  > "Hey there! I’m Flolytics — your AI financial sidekick. I help you handle money smartly and fly with your goals. What’s on your mind today?"
+- This project uses **ChatGPT** technology for AI responses.
