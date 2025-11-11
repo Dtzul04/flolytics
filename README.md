@@ -18,11 +18,9 @@ Flolytics is an AI-powered financial tool designed to help users manage finances
 flolytics/
 ├─ backend/ # FastAPI backend code
 ├─ frontend/ # HTML, JS, CSS files
-├─ .venv/ # Python virtual environment
 ├─ .vscode/ # VSCode settings folder
 ├─ .gitignore # Git ignore file
 ├─ README.md # Project README
-
 
 ---
 
