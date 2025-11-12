@@ -24,14 +24,17 @@ Try Flolytics live at: [https://flolytics-2025.onrender.com](https://flolytics-2
 
 ```
 flolytics/
+├── .venv                  # Python virtual environment for project dependencies
 ├── backend/               # FastAPI backend code and frontend static files
+│   ├── .vscode/           # VSCode editor settings and workspace configuration files
+│   ├── __pycache__/       # Automatically generated Python bytecode cache files
 │   ├── frontend/          # Frontend static assets: index.html, app.js, style.css
-│   ├── main.py            # FastAPI app entry point
-│   ├── requirements.txt   # Python dependencies
-│   └── .env               # Environment variables (not committed)
-│   └── requirements.txt               # Environment variables (not committed)
-├── README.md              # This README file
-└── .gitignore             # Git ignore rules
+│   ├── main.py            # FastAPI app entry point (backend server)
+│   ├── requirements.txt   # Python dependencies list for pip installation
+│   ├── .env               # Environment variables file (contains secrets, not committed)
+│   └── .gitignore         # Git ignore rules specific to backend directory
+├── .gitignore             # Global Git ignore rules for the project
+└── README.md              # This README file explaining the project
 ```
 
 ---
@@ -110,6 +113,6 @@ GROQ_API_KEY=your_groq_api_key_here
 
 - Uses Groq API for AI-powered chat completions.
 
----
+- This project was developed with the assistance of AI tools, including OpenAI’s ChatGPT.
 
-If you want, I can generate the `.gitignore` and `.env.example` files for you too! Just ask.
+---
