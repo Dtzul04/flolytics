@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import requests
+
 from pathlib import Path
 
 app = FastAPI()
@@ -25,7 +26,7 @@ class ChatRequest(BaseModel):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"),
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,8 +42,11 @@ async def root():
 @app.post("/api/chat")
 async def chat(request: ChatRequest):
     user_message = request.user_input
+    print("User said:", user_message)
+
     if not GROQ_API_KEY:
         return {"error": "Missing GROQ_API_KEY in .env file."}
+    
     conversation_history.append({"role": "user", "content": user_message})
 
     url = "https://api.groq.com/openai/v1/chat/completions"
@@ -55,10 +59,10 @@ async def chat(request: ChatRequest):
         "messages": [
             {
                 "role": "system",
-                "content": "You are Flolytics, a friendly and confident AI financial assistant. "
-                           "You speak with a clear, helpful, and slightly energetic tone—like a coach who loves helping users understand money. "
-                           "Keep responses short, warm, and focused on smart finance guidance, but sound natural and conversational. "
-                           "Use plain words instead of jargon."
+                "content": "You are **Flolytics**, a friendly and confident AI financial assistant. "
+                        "You speak with a clear, helpful, and slightly energetic tone—like a coach who loves helping users understand money. "
+                        "Keep responses short, warm, and focused on smart finance guidance, but sound natural and conversational. "
+                        "Use plain words instead of jargon."
             },
             *conversation_history,
         ],
@@ -78,11 +82,14 @@ async def chat(request: ChatRequest):
                     ai_reply = message.get("content") or message.get("text")
                 elif isinstance(message, str):
                     ai_reply = message
+
         if not ai_reply:
             ai_reply = response_json.get("text") or response_json.get("message") or str(response_json)
         conversation_history.append({"role": "assistant", "content": ai_reply})
         return {"reply": ai_reply}
-    except requests.RequestException:
+    except requests.RequestException as e:
+        print("Error contacting Groq:", e)
         return {"reply": "Could not reach Groq API."}
-    except Exception:
+    except Exception as e:
+        print("Unexpected error:", e)
         return {"reply": "An unexpected error occurred."}

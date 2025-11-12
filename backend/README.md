@@ -20,7 +20,8 @@ You can try Flolytics live at: [https://flolytics-2025.onrender.com](https://flo
 ## Project Structure
 
 flolytics/
-├─ backend/ # FastAPI backend code with /frontend folder
+├─ backend/ # FastAPI backend code
+├─ frontend/ # HTML, JS, CSS files
 ├─ .vscode/ # VSCode settings folder
 ├─ .gitignore # Git ignore file
 ├─ README.md # Project README
