@@ -1,89 +1,115 @@
 # Flolytics
 
-Flolytics is an AI-powered financial tool designed to help users manage finances smartly and "fly with numbers." It provides an interactive chat interface where users can ask finance-related questions and receive helpful responses.
+Flolytics is an AI-powered financial assistant that helps users manage money smartly through an interactive chat interface.
 
 ---
+
 ## Live Demo
 
-You can try Flolytics live at: [https://flolytics-2025.onrender.com](https://flolytics-2025.onrender.com)
+Try Flolytics live at: [https://flolytics-2025.onrender.com](https://flolytics-2025.onrender.com)
 
+---
 
 ## Features
 
-- Chat interface with AI responses.
-- AI introduces itself as Flolytics, your personal finance assistant.
-- Built with **FastAPI** for backend and **Alpine.js + TailwindCSS** for frontend.
-- Handles user messages and AI replies in a conversational format.
+- Conversational chat interface powered by AI.
+- AI introduces itself as Flolytics, your friendly finance coach.
+- Backend built with **FastAPI**.
+- Frontend built with **Alpine.js** and **TailwindCSS**.
+- Seamless communication between frontend and backend.
 
 ---
 
 ## Project Structure
 
+```
 flolytics/
-├─ backend/ # FastAPI backend code with /frontend folder
-├─ .vscode/ # VSCode settings folder
-├─ .gitignore # Git ignore file
-├─ README.md # Project README
-├─ requirements.txt # Python dependencies file
+├── backend/               # FastAPI backend code and frontend static files
+│   ├── frontend/          # Frontend static assets: index.html, app.js, style.css
+│   ├── main.py            # FastAPI app entry point
+│   ├── requirements.txt   # Python dependencies
+│   └── .env               # Environment variables (not committed)
+│   └── requirements.txt               # Environment variables (not committed)
+├── README.md              # This README file
+└── .gitignore             # Git ignore rules
+```
 
 ---
 
 ## Setup and Run Locally
 
-### Backend
+### 1. Activate Virtual Environment
 
-1. Activate your virtual environment:
+```bash
+source .venv/bin/activate
+```
 
-    ```bash
-    source .venv/bin/activate
-    ```
+### 2. Install Dependencies
 
-2. Install dependencies:
+```bash
+pip install -r backend/requirements.txt
+```
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+### 3. Configure Environment Variables
 
-3. Set environment variables in `.env`:
+Create a `.env` file inside the `backend/` folder with:
 
-    ```
-    GROQ_API_KEY=your_groq_api_key_here
-    ```
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
 
-4. Run the FastAPI server:
+### 4. Run the Backend Server
 
-    ```bash
-    uvicorn main:app --reload
-    ```
+```bash
+uvicorn backend.main:app --reload
+```
 
-The backend will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Backend will be accessible at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-### Frontend
+### 5. Open Frontend
 
-Open `index.html` in a browser.
+Open the file `backend/frontend/index.html` directly in your browser for local testing.
 
-The chat interface will connect to your running backend.
+The frontend will connect to your running backend automatically.
 
 ---
 
-## Deployment
+## Deployment on Render
 
-You can deploy the project using Render:
+1. Push your latest code to GitHub.
+2. Create a new web service on Render linked to your GitHub repo.
+3. Set the **Root Directory** to `backend`.
+4. Set the build command:
 
-1. Push your latest changes to GitHub.
-2. Connect your GitHub repository to Render.
-3. Configure build and start commands:
+```
+pip install -r requirements.txt
+```
 
-    - Build Command: `pip install -r requirements.txt`
-    - Start Command: `uvicorn backend.main:app --host 0.0.0.0 --port 10000`
+5. Set the start command:
 
-4. Add environment variable `GROQ_API_KEY` in Render settings.
+```
+uvicorn main:app --host 0.0.0.0 --port 10000
+```
+
+6. Add environment variable on Render:
+
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+7. Deploy and access your live site at Render’s assigned URL or your custom domain.
 
 ---
 
 ## Notes
 
-- Make sure to use a valid Groq API key.
-- The AI chat is preloaded with a welcome message:
-  > "Hey there! I’m Flolytics — your AI financial sidekick. I help you handle money smartly and fly with your goals. What’s on your mind today?"
-- This project uses **ChatGPT** technology for AI responses.
+- Keep your Groq API key secure and never commit it to GitHub.
+- The AI starts the chat with:
+
+> "Hey there! I’m Flolytics — your AI financial sidekick. I help you handle money smartly and fly with your goals. What’s on your mind today?"
+
+- Uses Groq API for AI-powered chat completions.
+
+---
+
+If you want, I can generate the `.gitignore` and `.env.example` files for you too! Just ask.
